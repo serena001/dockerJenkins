@@ -1,0 +1,12 @@
+FROM jenkins/jenkins:lts-alpine
+MAINTAINER 
+USER root
+RUN apk update && apk add docker py-pip #sudo
+RUN usermod -u 1000 jenkins
+RUN groupmod -g 1000 docker
+RUN usermod -a -G docker jenkins
+#RUN sudo usermod -aG docker jenkins
+RUN pip install docker-compose
+USER jenkins 
+
+
